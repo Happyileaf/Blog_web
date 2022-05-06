@@ -8,12 +8,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "highlight.js": "^10.5.0",
-    "less-loader": "^4.1.0",
-    "vue": "^2.6.11",
-    "vue-router": "^3.5.1",
     "@bytemd/plugin-breaks": "^1.11.0",
     "@bytemd/plugin-footnotes": "^1.11.0",
     "@bytemd/plugin-frontmatter": "^1.11.0",
@@ -21,7 +15,14 @@
     "@bytemd/plugin-gfm": "^1.11.0",
     "@bytemd/plugin-highlight": "^1.11.0",
     "@bytemd/plugin-mermaid": "^1.11.0",
-    "@bytemd/vue": "^1.11.0"
+    "@bytemd/vue": "^1.11.0",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "element-ui": "^2.15.8",
+    "highlight.js": "^10.5.0",
+    "less-loader": "^4.1.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

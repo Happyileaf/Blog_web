@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <img class="doraemon" src="../../assets/20160503000209_drUZE.jpeg" alt="" />
+    <img class="doraemon" src="../../assets/doraemon/20160503000209_drUZE.jpeg" alt="" />
     <div class="content">
       <nav>
         <h1>Happyileaf's Space</h1>

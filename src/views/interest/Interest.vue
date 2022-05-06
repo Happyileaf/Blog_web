@@ -1,121 +1,123 @@
 <template>
   <div class="interest">
     <Header></Header>
-    <section id="search" class="nav">
-      <div class="wrap">
-        <input type="text" placeholder="输入关键词搜索"/>
-      </div>
-    </section>
-    <section id="nav" class="nav">
-      <div id="city-content" class="category-content">
-        <h2>技术</h2>
-        <ul>
-          <a
-            :href="item.url"
-            target="blank"
-            v-for="(item, index) in recommendationNavList"
-            :key="index"
-            class="category_li"
-          >
-            <li>
-              {{ item.name }}
-            </li>
-          </a>
-          <a
-            :href="item.url"
-            target="blank"
-            v-for="(item, index) in recommendationNavList"
-            :key="index"
-            class="category_li"
-          >
-            <li>
-              {{ item.name }}
-            </li>
-          </a>
-        </ul>
-      </div>
-      <div id="city-content" class="category-content">
-        <h2>设计</h2>
-        <ul>
-          <a
-            :href="item.url"
-            target="blank"
-            v-for="(item, index) in recommendationNavList"
-            :key="index"
-            class="category_li"
-          >
-            <li>
-              {{ item.name }}
-            </li>
-          </a>
-        </ul>
-      </div>
-      <div id="city-content" class="category-content">
-        <h2>娱乐</h2>
-        <ul>
-          <a
-            :href="item.url"
-            target="blank"
-            v-for="(item, index) in recommendationNavList"
-            :key="index"
-            class="category_li"
-          >
-            <li>
-              {{ item.name }}
-            </li>
-          </a>
-        </ul>
-      </div>
-      <div id="city-content" class="category-content">
-        <h2>工具</h2>
-        <ul>
-          <a
-            :href="item.url"
-            target="blank"
-            v-for="(item, index) in recommendationNavList"
-            :key="index"
-            class="category_li"
-          >
-            <li>
-              {{ item.name }}
-            </li>
-          </a>
-        </ul>
-      </div>
-      <div id="city-content" class="category-content">
-        <h2>有趣的</h2>
-        <ul>
-          <a
-            :href="item.url"
-            target="blank"
-            v-for="(item, index) in recommendationNavList"
-            :key="index"
-            class="category_li"
-          >
-            <li>
-              {{ item.name }}
-            </li>
-          </a>
-        </ul>
-      </div>
-      <div id="city-content" class="category-content">
-        <h2>未分类</h2>
-        <ul>
-          <a
-            :href="item.url"
-            target="blank"
-            v-for="(item, index) in recommendationNavList"
-            :key="index"
-            class="category_li"
-          >
-            <li>
-              {{ item.name }}
-            </li>
-          </a>
-        </ul>
-      </div>
-    </section>
-    <section id="tech" class="nav">
+    <div class="content">
+      <section id="search" class="nav">
+        <div class="wrap">
+          <input
+            v-model="searchKeywords"
+            type="text"
+            placeholder="输入关键词搜索"
+            @keyup.enter="search"
+          />
+          <img
+            class="searchEngineLogo"
+            src="../../assets/interest/baidu.9627e61f.png"
+            alt=""
+          />
+        </div>
+      </section>
+      <section id="nav" class="nav">
+        <div id="city-content" class="category-content">
+          <h2>技术</h2>
+          <ul>
+            <a
+              :href="item.nav_url"
+              target="blank"
+              v-for="(item, index) in recommendationNavList['1']"
+              :key="index"
+              class="category_li"
+            >
+              <li>
+                {{ item.nav_name }}
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div id="city-content" class="category-content">
+          <h2>设计</h2>
+          <ul>
+            <a
+              :href="item.nav_url"
+              target="blank"
+              v-for="(item, index) in recommendationNavList['2']"
+              :key="index"
+              class="category_li"
+            >
+              <li>
+                {{ item.nav_name }}
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div id="city-content" class="category-content">
+          <h2>娱乐</h2>
+          <ul>
+            <a
+              :href="item.nav_url"
+              target="blank"
+              v-for="(item, index) in recommendationNavList['3']"
+              :key="index"
+              class="category_li"
+            >
+              <li>
+                {{ item.nav_name }}
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div id="city-content" class="category-content">
+          <h2>工具</h2>
+          <ul>
+            <a
+              :href="item.nav_url"
+              target="blank"
+              v-for="(item, index) in recommendationNavList['4']"
+              :key="index"
+              class="category_li"
+            >
+              <li>
+                {{ item.nav_name }}
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div id="city-content" class="category-content">
+          <h2>有趣的</h2>
+          <ul>
+            <a
+              :href="item.nav_url"
+              target="blank"
+              v-for="(item, index) in recommendationNavList['5']"
+              :key="index"
+              class="category_li"
+            >
+              <li>
+                {{ item.nav_name }}
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div id="city-content" class="category-content">
+          <h2>未分类</h2>
+          <ul>
+            <a
+              :href="item.nav_url"
+              target="blank"
+              v-for="(item, index) in recommendationNavList['0']"
+              :key="index"
+              class="category_li"
+            >
+              <li>
+                {{ item.nav_name }}
+              </li>
+            </a>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- <section id="tech" class="nav">
       <div class="container">
         <a
           v-for="(item, index) in recommendationNavList"
@@ -125,7 +127,7 @@
           ><img :src="item.logo" alt=""
         /></a>
       </div>
-    </section>
+    </section> -->
     <Footer></Footer>
   </div>
 </template>
@@ -138,6 +140,8 @@ import {
   RECOMMENDATION_NAV,
 } from "../../constant/preset";
 
+import { fetchRecommendationNavList } from "../../api/preset";
+
 export default {
   name: "Artice",
   components: {
@@ -146,41 +150,78 @@ export default {
   },
   data() {
     return {
-      recommendationNavList: RECOMMENDATION_NAV,
+      recommendationNavList: {},
+      searchKeywords: "",
     };
   },
-  created() {},
+  created() {
+    this.fetchNavList();
+  },
+  methods: {
+    search() {
+      window.open(
+        `https://www.baidu.com/s?ie=UTF-8&wd=${this.searchKeywords}`,
+        "_blank"
+      );
+    },
+    async fetchNavList() {
+      const { res, err } = await fetchRecommendationNavList();
+      console.log(res);
+      if (res) {
+        const { list } = res.result;
+        console.log(list);
+        let groupList = {};
+        list.forEach((val) => {
+          if (groupList[val.nav_type]) {
+            groupList[val.nav_type].push(val);
+          } else {
+            groupList[val.nav_type] = [val];
+          }
+        });
+        this.recommendationNavList = groupList;
+        console.log(groupList);
+      }
+    },
+  },
 };
 </script>
 
 <style lang='less' scoped>
-
-.interest{
+.interest {
   background-color: #f6f6f6;
+}
+
+.content {
+  min-height: e("calc(100vh - 60px)");
+  padding: 0 0 50px 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 .nav {
   margin: 0 15vw;
   padding: 30px 30px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
-#tech{
-  margin-bottom: 100px
+#tech {
+  margin-bottom: 100px;
 }
 
 #search {
   width: 100%;
   margin: 0 0;
   padding: 60px 0 0 0;
-  background-color: #1E80FF;
+  background-color: #1e80ff;
   text-align: center;
   display: flex;
   justify-content: center;
 
-  .wrap{
-    width:40%;
+  .wrap {
+    width: 40%;
     display: flex;
-    padding:30px 0 
+    align-items: center;
+    padding: 30px 0;
+    position: relative;
   }
   input {
     width: 100%;
@@ -194,7 +235,13 @@ export default {
     color: rgb(29, 33, 41);
     border-radius: 2px;
     font-size: 14px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
+  }
+
+  .searchEngineLogo {
+    position: absolute;
+    height: 2rem;
+    margin: 0 0 0 0.5rem;
   }
 }
 .container {
@@ -267,7 +314,7 @@ export default {
 
 .category-content h2 {
   min-width: 90px;
-  margin: 15px 0;
+  margin: 5px 0;
   padding: 10px 0;
   align-self: flex-start;
   font-size: 18px;
@@ -278,12 +325,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex: 1;
-  margin: 15px 0;
+  margin: 5px 0;
 }
 
 .category-content li {
   margin: 0 10px 5px 10px;
   padding: 10px 10px;
+  color: rgb(81, 87, 103);
 }
 .category-content li:hover {
   background-color: rgb(231, 231, 231);

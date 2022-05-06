@@ -52,7 +52,7 @@ export default {
 
 <style lang='less' scoped>
 .header {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
   padding: 5px 0;
   display: flex;
@@ -61,6 +61,8 @@ export default {
   font-weight: 500;
   color: #515767;
   position: fixed;
+  z-index: 1000;
+  border-bottom: 1px solid #f1f1f1;
   .logo {
     font-size: 20px;
     // padding: 30px 0;
@@ -79,7 +81,7 @@ export default {
       padding: 0 1em;
       word-break: keep-all;
       display: flex;
-        align-items: center;
+      align-items: center;
       a {
         color: #515767;
         display: flex;
@@ -90,6 +92,10 @@ export default {
           margin-right: 2rem;
           cursor: pointer;
         }
+      }
+      a:hover {
+        color: #007fff;
+        transition: 0.5s;
       }
     }
   }

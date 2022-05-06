@@ -5,40 +5,89 @@
       <div class="container">
         <img
           class="avatar"
-          src="../../assets/20160316234258_ErVQ4.thumb.700_0.jpeg"
+          src="../../assets/doraemon/20160316234258_ErVQ4.thumb.700_0.jpeg"
           alt=""
         />
         <span class="slogan">DEVELOPER ADVOCATE</span>
         <br />
-        <span class="intro">Web Developer - JavaScript - Tech Communities</span>
+        <span class="intro">Software Engineer - Web Developer - Tech Communities</span>
       </div>
     </section>
     <section class="profile">
       <div class="container">
-        <span class="title"> ABOUT </span>
+        <p class="title">认识一下吧</p>
         <div class="content">
-          <div class="content-group">
+          <div class="content-group intro">
             <p>
-              From beginner to specialist, we provide a project-based approach
-              that spans all skill levels, and our content is co-created by more
-              than 300 industry experts, many of whom helped shape Silicon
-              Valley.
+              {{userInfo.introduction}}
             </p>
           </div>
-          <div class="content-group">
-            <p>
-              Regardless of where you are in your digital transformation
-              journey, we’ve got a solution to address your needs and skills
-              gaps.And with new Nanodegree Programs coming out every quarter, we
-              are continuously on the cutting edge of digital skills.
-            </p>
+          <div class="content-group bio">
+            <div class="user-bio">
+              <div class="user-location user-bio-section">
+                <div class="user-bio-section-header">
+                  <svg-icon icon-class="email" /><span>Location</span>
+                </div>
+                <div class="user-bio-section-body">
+                  <div class="text-muted">{{ userInfo.location || 1 }}</div>
+                </div>
+              </div>
+
+              <div class="user-email user-bio-section">
+                <div class="user-bio-section-header">
+                  <svg-icon icon-class="email" /><span>Email</span>
+                </div>
+                <div class="user-bio-section-body">
+                  <div class="text-muted">{{ userInfo.email }}</div>
+                </div>
+              </div>
+
+              <div class="user-website user-bio-section">
+                <div class="user-bio-section-header">
+                  <svg-icon icon-class="email" /><span>Website</span>
+                </div>
+                <div class="user-bio-section-body">
+                  <div class="text-muted">{{ userInfo.website }}</div>
+                </div>
+              </div>
+
+              <div class="user-education user-bio-section">
+                <div class="user-bio-section-header">
+                  <svg-icon icon-class="education" /><span>Education</span>
+                </div>
+                <div class="user-bio-section-body">
+                  <div
+                    v-for="(item, index) in userInfo.education"
+                    :key="index"
+                    class="text-muted"
+                  >
+                    <span>{{ item }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="user-skills user-bio-section">
+                <div class="user-bio-section-header">
+                  <svg-icon icon-class="skill" /><span>Skills</span>
+                </div>
+                <div class="user-bio-section-body">
+                  <div
+                    v-for="(item, index) in userInfo.skills"
+                    :key="index"
+                    class="progress-item"
+                  >
+                    <span>{{ item.name }}</span>
+                    <el-progress :percentage="item.process" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
     <section class="tech">
       <div class="container">
-        <div class="title">技术Technology</div>
+        <div class="title">计算机技术Computer Technology</div>
         <div class="aboutme">
           <h4>永远年轻，永远热泪盈眶</h4>
           <p>2018年9月入学，参加了为期一年的Homyit工作室培训</p>
@@ -64,9 +113,7 @@
           <p>2018年9月入学，参加蓝天环保社团集训</p>
           <p>2018年10月，加入蓝天环保社团环教部</p>
           <p>2018年11月，成为环教部二队队长，小学负责人，第一次进行小学环教</p>
-          <p>2018年11月，在余干县瑞洪中学进行保护江豚宣讲活动
-            
-          </p>
+          <p>2018年11月，在余干县瑞洪中学进行保护江豚宣讲活动</p>
           <p>2019年1月，参加第七届鄱阳湖冬季观鸟营，考察鄱阳湖鸟况</p>
           <p>2019年4月，成为第五届江西省大学生环教营筹委，组织策划活动</p>
           <p>2019年6月，成为新一届环教部部长</p>
@@ -82,7 +129,7 @@
         <div class="title">环境保护Environmental Protection</div>
       </div>
     </section>
-    <section class="contact">
+    <!-- <section class="contact">
       <div class="container">
         <span class="title"> CONTACT ME </span>
         <form name="sentMessage" id="contactForm" novalidate="">
@@ -159,6 +206,16 @@
           </div>
         </form>
       </div>
+    </section> -->
+    <section class="picture-album">
+      <div class="container">
+        <img
+          :src="item.picture_url"
+          alt=""
+          v-for="(item, index) in pictureList"
+          :key="index"
+        />
+      </div>
     </section>
     <Footer></Footer>
   </div>
@@ -167,6 +224,11 @@
 <script>
 import Header from "__COMPONENTS__/Header";
 import Footer from "__COMPONENTS__/Footer";
+import { userInfo } from "../../constant/user";
+import { INDEX_PAGE_CAROUSEL_IMG } from "../../constant/preset"
+
+import { fetchUserInfo } from "../../api/userInfo"
+import { fetchCarouselImgList } from "../../api/preset"
 
 export default {
   name: "About",
@@ -174,23 +236,55 @@ export default {
     Header,
     Footer,
   },
+  data() {
+    return {
+      userInfo: userInfo[0],
+      pictureList : INDEX_PAGE_CAROUSEL_IMG
+    };
+  },
+  created() {
+    this.getUserInfo()
+    this.getPictureList()
+  },
+  methods:{
+    async getUserInfo(){
+      const { res, err } = await fetchUserInfo(20)
+      if(res){
+        console.log(res)
+        this.userInfo = res.result
+      }
+    },
+    async getPictureList(){
+      const { res, err } = await fetchCarouselImgList()
+      if(res){
+        
+        let tep = [...res.result.list,...INDEX_PAGE_CAROUSEL_IMG].slice(0,8)
+        console.log(tep)
+        this.pictureList = tep
+      }
+    }
+  }
 };
 </script>
 
 <style lang='less' scoped>
-.about {
-}
 section {
   box-sizing: border-box;
   min-height: 100vh;
   padding: 60px 0;
+  .container {
+    margin: 0 auto;
+    max-width: 1060px;
+    min-width: 320px;
+    text-align: center;
+  }
 }
 section.above {
   // min-height: e("calc(100vh - 106px)");
   background-color: rgb(0, 160, 234);
   margin: 0;
   display: flex;
-  align-items:center;
+  align-items: center;
   .avatar {
     display: block;
     width: 15vw;
@@ -210,23 +304,96 @@ section.above {
     color: aliceblue;
   }
 }
+section.profile {
+  .container {
+    // margin: 0 10vw;
+    height: 100%;
+    .title {
+      margin: 0;
+      padding: 10px 0 30px 0;
+      font-size: 37px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .content {
+      display: flex;
+      .content-group {
+        margin: 0 30px;
+        font-size: 18px;
+        font-weight: 300;
+        // letter-spacing: 0.1rem;
+      }
 
-section.contact {
-}
-.container {
-  margin: 0 auto;
-  max-width: 960px;
-  min-width: 320px;
-  text-align: center;
+      .content-group.intro {
+        flex: 1;
+      }
+
+      .content-group.bio {
+        min-width: 370px;
+      }
+      p {
+        text-indent: 2em;
+        font-size: 25px;
+        font-weight: 300;
+        text-align: left;
+      }
+    }
+  }
 }
 
-.tech,.contact {
+.user-bio {
+  margin-top: 20px;
+  padding: 0 30px;
+  color: #606266;
+
+  span {
+    padding-left: 4px;
+  }
+
+  .user-bio-section {
+    font-size: 14px;
+    padding: 15px 0;
+
+    .user-bio-section-header {
+      border-bottom: 1px solid #dfe6ec;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .user-bio-section-body {
+      font-size: 14px;
+    }
+  }
+
+  .user-bio-section:not(.user-education, .user-skills) {
+    display: flex;
+    justify-content: space-between;
+    .user-bio-section-header {
+      border-bottom: 0px solid #dfe6ec;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+      font-weight: 300;
+    }
+  }
+  .user-bio-section.user-skills,
+  .user-bio-section.user-education {
+    text-align: left;
+    .text-muted {
+      margin: 5px 0;
+    }
+  }
+}
+
+section.tech,
+section.contact,
+section.picture-album {
   background-color: rgb(0, 160, 234);
   color: aliceblue;
 }
 
-.tech,
-.environment {
+section.tech,
+section.environment {
   display: flex;
   .container {
     width: 100%;
@@ -248,8 +415,7 @@ section.contact {
   }
 }
 
-.profile,
-.contact {
+section.contact {
   .container {
     width: 45%;
     text-align: center;
@@ -261,6 +427,55 @@ section.contact {
   }
   form {
     margin-top: 60px;
+  }
+}
+section.picture-album {
+  display: flex;
+  align-items: center;
+  .container {
+    width: 70%;
+    margin: auto;
+    // padding: 100px 0;
+    display: grid;
+    grid-template-rows: 150px 150px 150px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-areas:
+      "a a b c c c"
+      "d d b c c c"
+      "e f g h h h";
+    place-items: center center;
+    grid-gap: 10px 10px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .container img:nth-child(1) {
+    grid-area: a;
+  }
+
+  .container img:nth-child(2) {
+    grid-area: b;
+  }
+  .container img:nth-child(3) {
+    grid-area: c;
+  }
+  .container img:nth-child(4) {
+    grid-area: d;
+  }
+
+  .container img:nth-child(5) {
+    grid-area: e;
+  }
+  .container img:nth-child(6) {
+    grid-area: f;
+  }
+    .container img:nth-child(7) {
+    grid-area: g;
+  }
+    .container img:nth-child(8) {
+    grid-area: h;
   }
 }
 
@@ -330,21 +545,5 @@ section.contact {
 
 #contactForm:last-child {
   text-align: left;
-}
-
-section.profile {
-  .container {
-    .content {
-      display: flex;
-    }
-  }
-
-  .content-group {
-    padding: 0 30px;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 0.1rem;
-    flex: 1;
-  }
 }
 </style>

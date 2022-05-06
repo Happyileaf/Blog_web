@@ -1,7 +1,8 @@
+
 <template>
   <div>
     <Header></Header>
-    <div class="content">
+    <div class="container">
       <Viewer :value="content" :plugins="plugins" @change="handleChange" />
     </div>
     <Footer></Footer>
@@ -44,8 +45,10 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.content {
+.container {
   margin: 0 auto;
+  padding: 60px 0;
   max-width: 768px;
+  
 }
 </style>

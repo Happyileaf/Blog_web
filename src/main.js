@@ -4,6 +4,10 @@ import router from './router'
 import axios from 'axios'
 import './assets/css/common.css'
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI);
+
 import hljs from 'highlight.js'
 // import 'highlight.js/styles/github.css'
 import 'highlight.js/styles/atelier-forest-dark.css'

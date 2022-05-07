@@ -1,26 +1,26 @@
 const articleList = [{
     id:1,
-    title:'ARTICLE TITLE',
+    title:'字节跳动低代码×微前端在火山引擎官网的探索与实践',
     headline:'From beginner to specialist, we provide a project-based approach',
 },{
     id:1,
-    title:'ARTICLE TITLE',
+    title:'字节跳动低代码×微前端在火山引擎官网的探索与实践',
     headline:'From beginner to specialist, we provide a project-based approach',
 },{
     id:1,
-    title:'ARTICLE TITLE',
+    title:'字节跳动低代码×微前端在火山引擎官网的探索与实践',
     headline:'From beginner to specialist, we provide a project-based approach',
 },{
     id:1,
-    title:'ARTICLE TITLE',
+    title:'字节跳动低代码×微前端在火山引擎官网的探索与实践',
     headline:'From beginner to specialist, we provide a project-based approach',
 },{
     id:1,
-    title:'ARTICLE TITLE',
+    title:'字节跳动低代码×微前端在火山引擎官网的探索与实践',
     headline:'From beginner to specialist, we provide a project-based approach',
 },{
     id:1,
-    title:'ARTICLE TITLE',
+    title:'字节跳动低代码×微前端在火山引擎官网的探索与实践',
     headline:'From beginner to specialist, we provide a project-based approach',
 },
 ]

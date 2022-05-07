@@ -1,145 +1,57 @@
 <template>
   <div class="article">
     <Header></Header>
-    <nav
-      role="navigation"
-      class="view-nav"
-      data-v-7e1071b3=""
-      data-v-45471933=""
-      data-v-4fa4e5da=""
-    >
+    <nav role="navigation" class="view-nav">
       <div class="nav-list left" data-v-7e1071b3="">
-        <a href="/recommended" class="nav-item active" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            综合
-          </div></a
-        ><a href="/following" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            关注
-          </div></a
-        ><a href="/backend" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            st:state="6809637769959178254"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            后端
-          </div></a
-        ><a href="/frontend" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            st:state="6809637767543259144"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            前端
-          </div></a
-        ><a href="/android" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            st:state="6809635626879549454"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            Android
-          </div></a
-        ><a href="/ios" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            st:state="6809635626661445640"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            iOS
-          </div></a
-        ><a href="/ai" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            st:state="6809637773935378440"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            人工智能
-          </div></a
-        ><a href="/freebie" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            st:state="6809637771511070734"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            开发工具
-          </div></a
-        ><a href="/career" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            st:state="6809637776263217160"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            代码人生
-          </div></a
-        ><a href="/article" class="nav-item" data-v-7e1071b3=""
-          ><div
-            st:block="categoryPopover"
-            st:state="6809637772874219534"
-            class="category-popover-box"
-            data-v-9786f6f8=""
-            data-v-7e1071b3=""
-          >
-            <!---->
-            阅读
-          </div></a
-        >
         <a
-          href="/subscribe/subscribed"
-          class="nav-item right"
-          data-v-7e1071b3=""
-        >
-          标签管理
+          href=""
+          class="nav-item active"
+          @click.prevent="changeCategory(0)"
+          ><div st:block="categoryPopover" class="category-popover-box">
+            <!---->
+            {{ "全部" }}
+          </div>
+        </a>
+        <a
+          v-for="(item, index) in categoryList"
+          :key="index"
+          href=""
+          class="nav-item active"
+          @click.prevent="changeCategory(item.category_id)"
+          ><div st:block="categoryPopover" class="category-popover-box">
+            <!---->
+            {{ item.category_name }}
+          </div>
         </a>
       </div>
     </nav>
     <div class="container">
-      <div class="items" v-for="(item, index) in articleList" :key="index">
-        <a :href="'#/article/' + item.id + ''">
-          <h1>{{ item.title }}</h1>
-          <div class="item">
-            <span class="title">
-              {{ item.headline }}
-            </span>
-            <!-- <span class="time">
+      <div class="content">
+        <div class="items" v-for="(item, index) in articleList" :key="index">
+          <div class="meta-container">
+            <div class="date">{{ item.article_info.create_time }}</div>
+            <div class="dividing"></div>
+            <div class="tag_list">
+              <a href="" target="_blank" rel="" class="tag">{{
+                item.category_info.category_name
+              }}</a>
+              <a v-for="(item,index) in item.tags_info" :key="index" href="" target="_blank" rel="" class="tag">{{
+                item.tag_name
+              }}</a>
+            </div>
+          </div>
+          <div class="title-container">
+            <a :href="'#/article/' + item.article_info.article_id + ''">
+              <h1 class="title">{{ item.article_info.title }}</h1>
+              <p class="headline">
+                {{ item.article_info.brief_content }}
+              </p>
+              <!-- <span class="time">
             {{ `0001-1-1 01-01 00:00` }}
           </span> -->
+            </a>
           </div>
-        </a>
+        </div>
       </div>
     </div>
     <Footer></Footer>
@@ -150,6 +62,9 @@
 import Header from "__COMPONENTS__/Header";
 import Footer from "__COMPONENTS__/Footer";
 import { articleList } from "../../constant/article";
+// import { articleList } from "../../constant/article";
+import { fetchCategoryList } from "../../api/category";
+import { fetchList } from "../../api/article";
 
 export default {
   name: "Artice",
@@ -161,24 +76,51 @@ export default {
     return {
       queryInfo: {
         keyword: "",
-        pageIndex: 1,
-        pageSize: 100,
+        category: undefined,
+        status: 1,
+        pageNum: 1,
+        pageSize: 1000000,
       },
       total: 0,
-      articleList: articleList,
+      categoryList: [],
+      articleList: [],
     };
   },
   created() {
+    this.getCategoryList();
     this.getArticleList();
   },
   methods: {
-    async getArticleList() {
-      const { data: res } = await this.$http.get("article", {
-        params: this.queryInfo,
+    async getCategoryList() {
+      const { res, err } = await fetchCategoryList({
+        pageNum: 1,
+        pageSize: 20,
       });
-      if (res.status !== 200) return alert("文章列表获取失败");
-      this.articleList = res.data.data;
-      this.total = res.data.totalCount;
+      if (res) {
+        console.log(res);
+        this.categoryList = res.result.list;
+      }
+    },
+    async getArticleList() {
+      const { res } = await fetchList(this.queryInfo);
+      if (res) {
+        this.articleList = res.result.list;
+      }
+    },
+    changeCategory(category_id) {
+      if (category_id === 0) {
+        this.queryInfo = {
+          keyword: "",
+          category: undefined,
+          status: 1,
+          pageNum: 1,
+          pageSize: 1000000,
+        };
+        this.getArticleList();
+      } else {
+        this.queryInfo.category = category_id;
+        this.getArticleList();
+      }
     },
     rTime(date) {
       var json_date = new Date(date).toJSON();
@@ -192,7 +134,7 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.article{
+.article {
   background-color: #f6f6f6;
 }
 .wrap {
@@ -200,21 +142,68 @@ export default {
   margin: auto;
 }
 .container {
+  box-sizing: border-box;
   margin: auto;
   padding: 121px 0;
   max-width: 960px;
+  min-height: e("calc(100vh - 60px)");
   position: relative;
-  background-color: #ffffff;
+  background-color: #f6f6f6;
+  .content {
+    margin: 10px 0;
+    // padding: 0 20px;
+    background-color: #ffffff;
+  }
   .items {
-    padding: 0.75em 0;
-    .item {
+    // margin:10px 0;
+    padding: 15px 20px 0 20px;
+    .meta-container {
       display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      .title {
-        font-size: 16px;
-        font-weight: 300;
+      align-items: center;
+      margin: 0 0 10px 0;
+      .date {
+        position: relative;
+        // padding: 0 10px;
+        line-height: 22px;
+        font-size: 13px;
+        flex-shrink: 0;
       }
+      .dividing {
+        width: 1px;
+        height: 14px;
+        background: #e5e6eb;
+        margin: 0 8px;
+      }
+      .tag_list {
+        display: flex;
+        align-items: center;
+        line-height: 22px;
+      }
+      .tag{
+        margin: 0 5px;
+      }
+    }
+
+    .title-container {
+      padding: 0 0 15px 0;
+      border-bottom: 1px solid #e5e6eb;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 24px;
+      color: #1d2129;
+      margin: 0 0 8px 0;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+    }
+    .headline {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 300;
     }
   }
 }

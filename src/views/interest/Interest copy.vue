@@ -198,7 +198,7 @@ export default {
 }
 .nav {
   margin: 0 15vw;
-  padding: 170px 30px;
+  padding: 221px 30px;
   background-color: #ffffff;
 }
 

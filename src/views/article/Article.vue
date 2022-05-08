@@ -93,8 +93,9 @@ export default {
   methods: {
     async getCategoryList() {
       const { res, err } = await fetchCategoryList({
+        status:1,
         pageNum: 1,
-        pageSize: 20,
+        pageSize: 10000,
       });
       if (res) {
         console.log(res);

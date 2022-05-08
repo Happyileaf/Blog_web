@@ -16,7 +16,7 @@
           <a href="#/about">关于</a>
         </li>
         <li>
-          <a href="http://blog.indomite.top/admin"><LoginSVG /></a>
+          <a href="http://localhost:9527/#/article/articleList"><LoginSVG /></a>
         </li>
       </ul>
     </div>

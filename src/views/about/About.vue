@@ -333,7 +333,7 @@ section.profile {
       }
       p {
         text-indent: 2em;
-        font-size: 25px;
+        font-size: 23px;
         font-weight: 300;
         text-align: left;
       }
